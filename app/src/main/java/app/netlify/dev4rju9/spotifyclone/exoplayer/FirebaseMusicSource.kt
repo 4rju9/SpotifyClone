@@ -82,7 +82,7 @@ class FirebaseMusicSource @Inject constructor(
             .setMediaUri(song.description.mediaUri)
             .build()
         MediaBrowserCompat.MediaItem(desc, FLAG_PLAYABLE)
-    }
+    }.toMutableList()
 
 }
 
