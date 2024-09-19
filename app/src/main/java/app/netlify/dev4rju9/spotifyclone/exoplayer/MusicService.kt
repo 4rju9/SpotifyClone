@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.session.MediaSessionCompat
 import androidx.media.MediaBrowserServiceCompat
+import app.netlify.dev4rju9.spotifyclone.exoplayer.callbacks.MusicPlayerNotificationListener
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -32,6 +33,10 @@ class MusicService : MediaBrowserServiceCompat() {
     private lateinit var mediaSession: MediaSessionCompat
     private lateinit var mediaSessionConnector: MediaSessionConnector
 
+    var isForegroundService = false
+
+    private lateinit var musicNotificationManager: MusicNotificationManager
+
     override fun onCreate() {
         super.onCreate()
 
@@ -44,6 +49,15 @@ class MusicService : MediaBrowserServiceCompat() {
             isActive = true
         }
         sessionToken = mediaSession.sessionToken
+
+        musicNotificationManager = MusicNotificationManager(
+            this,
+            mediaSession.sessionToken,
+            MusicPlayerNotificationListener(this)
+        ) {
+            
+        }
+
         mediaSessionConnector = MediaSessionConnector(mediaSession)
         mediaSessionConnector.setPlayer(exoPlayer)
 
