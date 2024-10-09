@@ -12,6 +12,7 @@ import app.netlify.dev4rju9.spotifyclone.exoplayer.callbacks.MusicPlaybackPrepar
 import app.netlify.dev4rju9.spotifyclone.exoplayer.callbacks.MusicPlayerEventListener
 import app.netlify.dev4rju9.spotifyclone.exoplayer.callbacks.MusicPlayerNotificationListener
 import app.netlify.dev4rju9.spotifyclone.other.Constants.MEDIA_ROOT_ID
+import app.netlify.dev4rju9.spotifyclone.other.Constants.NETWORK_ERROR
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
@@ -158,6 +159,7 @@ class MusicService : MediaBrowserServiceCompat() {
                             isPlayerInitialized = true
                         }
                     } else {
+                        mediaSession.sendSessionEvent(NETWORK_ERROR, null)
                         result.sendResult(null)
                     }
                 }
