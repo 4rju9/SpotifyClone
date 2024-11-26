@@ -1,7 +1,8 @@
-package app.netlify.dev4rju9.spotifyclone
+package app.netlify.dev4rju9.spotifyclone.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import app.netlify.dev4rju9.spotifyclone.R
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

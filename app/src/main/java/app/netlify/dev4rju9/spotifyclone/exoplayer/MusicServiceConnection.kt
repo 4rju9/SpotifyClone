@@ -41,7 +41,7 @@ class MusicServiceConnection (
         ),
         mediaBrowserConnectionCallback,
         null
-    ).apply { connect() }
+    ).apply { connect()  }
 
     fun subscribe (parentId: String, callback: MediaBrowserCompat.SubscriptionCallback) {
         mediaBrowser.subscribe(parentId, callback)

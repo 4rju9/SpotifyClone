@@ -2,6 +2,7 @@ package app.netlify.dev4rju9.spotifyclone.di
 
 import android.content.Context
 import app.netlify.dev4rju9.spotifyclone.R
+import app.netlify.dev4rju9.spotifyclone.exoplayer.MusicServiceConnection
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -26,5 +27,11 @@ object AppModule {
             .error(R.drawable.ic_image)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
     )
+
+    @Singleton
+    @Provides
+    fun provideMusicServiceConnection (
+        @ApplicationContext context: Context
+    ) = MusicServiceConnection(context)
 
 }
