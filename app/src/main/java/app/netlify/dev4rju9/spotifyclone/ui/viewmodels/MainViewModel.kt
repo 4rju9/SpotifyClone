@@ -3,6 +3,7 @@ package app.netlify.dev4rju9.spotifyclone.ui.viewmodels
 import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaBrowserCompat.SubscriptionCallback
 import android.support.v4.media.MediaMetadataCompat.METADATA_KEY_MEDIA_ID
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -35,14 +36,14 @@ class MainViewModel @Inject constructor(
                 children: MutableList<MediaBrowserCompat.MediaItem>
             ) {
                 super.onChildrenLoaded(parentId, children)
-                val items = children.map {
-                    Song(
-                        it.mediaId!!,
-                        it.description.title.toString(),
-                        it.description.subtitle.toString(),
-                        it.description.mediaUri.toString(),
-                        it.description.iconUri.toString()
-                    )
+                val items = children.mapNotNull {
+                    val mediaId = it.mediaId ?: return@mapNotNull null
+                    val title = it.description.title?.toString() ?: "Unknown Title"
+                    val subtitle = it.description.subtitle?.toString() ?: "Unknown Subtitle"
+                    val mediaUri = it.description.mediaUri?.toString() ?: "Unknown Media URI"
+                    val iconUri = it.description.iconUri?.toString() ?: "Unknown Icon URI"
+
+                    Song(mediaId, title, subtitle, mediaUri, iconUri)
                 }
                 _mediaItems.postValue(Resource.success(items))
             }

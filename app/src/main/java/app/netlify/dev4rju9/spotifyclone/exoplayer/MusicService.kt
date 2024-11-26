@@ -7,6 +7,7 @@ import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaSessionCompat
+import android.util.Log
 import androidx.media.MediaBrowserServiceCompat
 import app.netlify.dev4rju9.spotifyclone.exoplayer.callbacks.MusicPlaybackPreparer
 import app.netlify.dev4rju9.spotifyclone.exoplayer.callbacks.MusicPlayerEventListener

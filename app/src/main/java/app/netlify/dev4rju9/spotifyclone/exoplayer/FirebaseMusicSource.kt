@@ -5,6 +5,7 @@ import android.support.v4.media.MediaBrowserCompat.MediaItem.FLAG_PLAYABLE
 import android.support.v4.media.MediaDescriptionCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.MediaMetadataCompat.*
+import android.util.Log
 import androidx.core.net.toUri
 import app.netlify.dev4rju9.spotifyclone.data.remote.MusicDatabase
 import app.netlify.dev4rju9.spotifyclone.exoplayer.State.*
@@ -50,7 +51,7 @@ class FirebaseMusicSource @Inject constructor(
         val allSongs = musicDatabase.getAllSongs()
         songs = allSongs.map { song ->
             MediaMetadataCompat.Builder()
-                .putString(METADATA_KEY_MEDIA_ID, song.mediaId.toString())
+                .putString(METADATA_KEY_MEDIA_ID, song.mediaId)
                 .putString(METADATA_KEY_TITLE, song.title)
                 .putString(METADATA_KEY_DISPLAY_TITLE, song.title)
                 .putString(METADATA_KEY_ARTIST, song.subtitle)
